@@ -1,7 +1,7 @@
 set nocompatible              " required
 filetype off                  " required
 
-let g:python3_host_prog='C:/Users/marci/.config/nvim/venv/Scripts/python.exe'
+let g:python3_host_prog='/home/kaczor/.pyenv/versions/nvim/bin/python'
 
 call plug#begin()
   Plug 'preservim/nerdtree'
@@ -22,10 +22,9 @@ call plug#end()
 syntax enable
 set background=dark
 set termguicolors 
-# colorscheme base16-solarized-dark
+colorscheme base16-solarized-dark
 set bs=2
 set mouse=a
-
 let mapleader = ","
 set nowrap
 set tw=119
@@ -55,16 +54,11 @@ set nu
 " Fix files automatically on save
 let g:ale_fixers = {}
 let g:ale_javascript_eslint_use_global = 1
-
 let g:ale_linters_explicit = 1
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
-
 set signcolumn=yes
-
-
 let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
-
 autocmd! bufwritepost .vimrc source %
