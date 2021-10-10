@@ -11,7 +11,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'dense-analysis/ale'
   Plug 'airblade/vim-gitgutter'
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
   Plug 'fannheyward/coc-pyright'
   Plug 'jiangmiao/auto-pairs'
   Plug 'HerringtonDarkholme/yats.vim'
