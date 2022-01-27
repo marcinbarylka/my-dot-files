@@ -11,18 +11,18 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'dense-analysis/ale'
   Plug 'airblade/vim-gitgutter'
-  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-  Plug 'fannheyward/coc-pyright'
-  Plug 'jiangmiao/auto-pairs'
   Plug 'HerringtonDarkholme/yats.vim'
   Plug 'chriskempson/base16-vim'
   Plug 'vim-python/python-syntax'
+  Plug 'liuchengxu/vista.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 call plug#end()
 
 syntax enable
 set background=dark
 set termguicolors 
-colorscheme base16-solarized-dark
+colorscheme gruvbox
 set bs=2
 set mouse=a
 let mapleader = ","
@@ -51,6 +51,20 @@ set laststatus=2
 " line numbers
 set nu
 
+" Vista
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+set statusline+=%{NearestMethodOrFunction()}
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+let g:vista_icon_indent = ["▸ ", ""]
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+\   "function": "f",
+\   "variable": "v",
+\  }
+
 " Fix files automatically on save
 let g:ale_fixers = {}
 let g:ale_javascript_eslint_use_global = 1
@@ -60,5 +74,5 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
 set signcolumn=yes
-let g:coc_global_extensions = ['coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
 autocmd! bufwritepost .vimrc source %
