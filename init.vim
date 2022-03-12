@@ -25,9 +25,10 @@ call plug#begin()
   Plug 'HerringtonDarkholme/yats.vim'
   
   " Python
-  Plug 'vim-python/python-syntax'
+  " Plug 'vim-python/python-syntax'
   Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
+  Plug 'wookayin/vim-autoimport'
 call plug#end()
 
 syntax enable
@@ -54,11 +55,6 @@ let python_highlight_all=1
 nmap <leader>t :NERDTreeToggle
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-" Airline setup
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-set laststatus=2
-
 " line numbers
 set nu
 
@@ -71,37 +67,41 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
 set signcolumn=yes
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-jedi']  " list of CoC extensions needed
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-jedi', 'coc-pyright']  " list of CoC extensions needed
 autocmd! bufwritepost .vimrc source %
+
+inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " lualine config
 lua << END
 require('lualine').setup {
   options = {
-    icons_enabled = true,
     theme = bubbles_theme,
-    component_separators = { left = '', right = ''},
-    section_separators = { left = '', right = ''},
-    disabled_filetypes = {},
-    always_divide_middle = true,
+    component_separators = '|',
+    section_separators = { left = '', right = '' },
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_a = {
+      { 'mode', separator = { left = '' }, right_padding = 2 },
+    },
+    lualine_b = { 'filename', 'branch' },
+    lualine_c = {},
+    lualine_x = {},
+    lualine_y = { 'filetype', 'fileformat', 'progress' },
+    lualine_z = {
+      { 'location', separator = { right = '' }, left_padding = 2 },
+    },
   },
   inactive_sections = {
-    lualine_a = {},
+    lualine_a = { 'filename' },
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = {},
+    lualine_x = {},
     lualine_y = {},
-    lualine_z = {}
+    lualine_z = { 'location' },
   },
   tabline = {},
-  extensions = {}
+  extensions = {},
 }
 END
