@@ -4,25 +4,36 @@ filetype off                  " required
 let g:python3_host_prog='/home/kaczor/.pyenv/versions/nvim/bin/python'
 
 call plug#begin()
+
+  " tree
   Plug 'preservim/nerdtree'
+
+  " colors 
   Plug 'morhetz/gruvbox'
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'tpope/vim-fugitive'
-  Plug 'dense-analysis/ale'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'HerringtonDarkholme/yats.vim'
   Plug 'chriskempson/base16-vim'
+
+  " lualine
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'kyazdani42/nvim-web-devicons'
+  
+  " git
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'airblade/vim-gitgutter'
+
+  Plug 'dense-analysis/ale'
+  Plug 'HerringtonDarkholme/yats.vim'
+  
+  " Python
   Plug 'vim-python/python-syntax'
-  Plug 'liuchengxu/vista.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
   Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+  Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 call plug#end()
 
 syntax enable
 set background=dark
 set termguicolors 
-colorscheme gruvbox
+colorscheme onedark
 set bs=2
 set mouse=a
 let mapleader = ","
@@ -51,20 +62,6 @@ set laststatus=2
 " line numbers
 set nu
 
-" Vista
-function! NearestMethodOrFunction() abort
-  return get(b:, 'vista_nearest_method_or_function', '')
-endfunction
-
-set statusline+=%{NearestMethodOrFunction()}
-autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
-let g:vista_icon_indent = ["▸ ", ""]
-let g:vista#renderer#enable_icon = 1
-let g:vista#renderer#icons = {
-\   "function": "f",
-\   "variable": "v",
-\  }
-
 " Fix files automatically on save
 let g:ale_fixers = {}
 let g:ale_javascript_eslint_use_global = 1
@@ -74,5 +71,37 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
 set signcolumn=yes
-let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier']  " list of CoC extensions needed
+let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-jedi']  " list of CoC extensions needed
 autocmd! bufwritepost .vimrc source %
+
+" lualine config
+lua << END
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = bubbles_theme,
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
+}
+END
