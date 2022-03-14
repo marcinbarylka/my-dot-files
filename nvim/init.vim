@@ -21,14 +21,16 @@ call plug#begin()
   Plug 'tpope/vim-rhubarb'
   Plug 'airblade/vim-gitgutter'
 
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
+
   Plug 'dense-analysis/ale'
   Plug 'HerringtonDarkholme/yats.vim'
   
   " Python
-  " Plug 'vim-python/python-syntax'
+  Plug 'vim-python/python-syntax'
   Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-  Plug 'wookayin/vim-autoimport'
+
 call plug#end()
 
 syntax enable
@@ -53,7 +55,11 @@ let python_highlight_all=1
 
 " nerdtree
 nmap <leader>t :NERDTreeToggle
+nnoremap <F5> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+" terminal
+nnoremap <F6> :sp<CR>:terminal<CR>
 
 " line numbers
 set nu
@@ -68,10 +74,6 @@ let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
 set signcolumn=yes
 let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-jedi', 'coc-pyright']  " list of CoC extensions needed
-autocmd! bufwritepost .vimrc source %
-
-inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " lualine config
 lua << END
