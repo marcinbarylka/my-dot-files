@@ -11,6 +11,7 @@ call plug#begin()
   " colors 
   Plug 'morhetz/gruvbox'
   Plug 'chriskempson/base16-vim'
+  Plug 'joshdick/onedark.vim'
 
   " lualine
   Plug 'nvim-lualine/lualine.nvim'
