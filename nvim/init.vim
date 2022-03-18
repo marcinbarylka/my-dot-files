@@ -24,12 +24,15 @@ call plug#begin()
 
   Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 
+  " linting -- todo: is it needed?
   Plug 'dense-analysis/ale'
-  Plug 'HerringtonDarkholme/yats.vim'
   
+  " TypeScript
+  Plug 'HerringtonDarkholme/yats.vim'
+
   " Python
   Plug 'vim-python/python-syntax'
-  Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
+  " Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
   Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 
 call plug#end()
@@ -61,6 +64,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 
 " terminal
 nnoremap <F6> :sp<CR>:terminal<CR>
+
+nnoremap = :bn<CR>
+nnoremap - :bp<CR>
 
 " line numbers
 set nu
