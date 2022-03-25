@@ -24,6 +24,9 @@ call plug#begin()
 
   Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 
+  " Vista
+  Plug 'liuchengxu/vista.vim'
+
   " linting -- todo: is it needed?
   Plug 'dense-analysis/ale'
   
@@ -94,7 +97,7 @@ require('lualine').setup {
     lualine_a = {
       { 'mode', separator = { left = '' }, right_padding = 2 },
     },
-    lualine_b = { 'filename', 'branch' },
+    lualine_b = { 'filename', 'NearestMethodOrFunction', 'branch' },
     lualine_c = {},
     lualine_x = {},
     lualine_y = { 'filetype', 'fileformat', 'progress' },
@@ -114,3 +117,18 @@ require('lualine').setup {
   extensions = {},
 }
 END
+
+" Vista config
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+
+autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
