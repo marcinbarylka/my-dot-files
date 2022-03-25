@@ -63,7 +63,7 @@ nnoremap <F5> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " terminal
-nnoremap <F6> :sp<CR>:terminal<CR>
+noremap <F6> :sp<CR><C-w>j:res 15<CR>:terminal<CR>
 
 nnoremap = :bn<CR>
 nnoremap - :bp<CR>
