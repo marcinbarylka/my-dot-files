@@ -6,12 +6,15 @@ let g:python3_host_prog='/home/kaczor/.pyenv/versions/nvim/bin/python'
 call plug#begin()
 
   " tree
-  Plug 'preservim/nerdtree'
+  " Plug 'preservim/nerdtree'
+  Plug 'kyazdani42/nvim-web-devicons' " for file icons
+  Plug 'kyazdani42/nvim-tree.lua'  
 
   " colors 
   Plug 'morhetz/gruvbox'
   Plug 'chriskempson/base16-vim'
   Plug 'joshdick/onedark.vim'
+  Plug 'NLKNguyen/papercolor-theme'
 
   " lualine
   Plug 'nvim-lualine/lualine.nvim'
@@ -61,8 +64,8 @@ set expandtab
 let python_highlight_all=1
 
 " nerdtree
-nmap <leader>t :NERDTreeToggle
-nnoremap <F5> :NERDTreeToggle<CR>
+nmap <leader>t :NvimTreeToggle
+nnoremap <F5> :NvimTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " terminal
@@ -84,6 +87,11 @@ let g:ale_sign_warning = '--'
 let g:ale_fix_on_save = 1
 set signcolumn=yes
 let g:coc_global_extensions = ['coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-jedi', 'coc-pyright']  " list of CoC extensions needed
+
+" setup
+lua << END
+require('nvim-tree').setup{}
+END
 
 " lualine config
 lua << END
@@ -132,3 +140,4 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
