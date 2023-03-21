@@ -1,22 +1,22 @@
-syntax on                       "syntax highlighting, see :help syntax
-filetype plugin indent on       "file type detection, see :help filetype
-set number                      "display line number
-set path+=**                    "improves searching, see :help path
-set noswapfile                  "disable use of swap files
-set wildmenu                    "completion menu
-set backspace=indent,eol,start  "ensure proper backspace functionality
-set undodir=~/.cache/nvim/undo  "undo ability will persist after exiting file
-set undofile                    "see :help undodir and :help undofile
-set incsearch                   "see results while search is being typed, see :help incsearch
-set smartindent                 "auto indent on new lines, see :help smartindent
-set ic                          "ignore case when searching
-set colorcolumn=119             "display color when line reaches pep8 standards
-set expandtab                   "expanding tab to spaces
-set tabstop=4                   "setting tab to 4 columns
-set shiftwidth=4                "setting tab to 4 columns
-set softtabstop=4               "setting tab to 4 columns
-set showmatch                   "display matching bracket or parenthesis
-set hlsearch incsearch          "highlight all pervious search pattern with incsearch
+syntax on                       " syntax highlighting, see :help syntax
+filetype plugin indent on       " file type detection, see :help filetype
+set number                      " display line number
+set path+=**                    " improves searching, see :help path
+set noswapfile                  " disable use of swap files
+set wildmenu                    " completion menu
+set backspace=indent,eol,start  " ensure proper backspace functionality
+set undodir=~/.cache/nvim/undo  " undo ability will persist after exiting file
+set undofile                    " see :help undodir and :help undofile
+set incsearch                   " see results while search is being typed, see :help incsearch
+set smartindent                 " auto indent on new lines, see :help smartindent
+set ic                          " ignore case when searching
+set colorcolumn=119             " display color when line reaches pep8 standards
+set expandtab                   " expanding tab to spaces
+set tabstop=4                   " setting tab to 4 columns
+set shiftwidth=4                " setting tab to 4 columns
+set softtabstop=4               " setting tab to 4 columns
+set showmatch                   " display matching bracket or parenthesis
+set hlsearch incsearch          " highlight all pervious search pattern with incsearch
 set termguicolors
 
 highlight ColorColumn ctermbg=9 "display ugly bright red bar at color column number
@@ -36,9 +36,12 @@ call plug#begin()
 
   " colors
   Plug 'morhetz/gruvbox'
-  Plug 'chriskempson/base16-vim'
   Plug 'joshdick/onedark.vim'
   Plug 'NLKNguyen/papercolor-theme'
+  Plug 'sainnhe/sonokai'
+  Plug 'sainnhe/edge'
+  Plug 'sainnhe/gruvbox-material'
+  Plug 'sainnhe/everforest'
 
   " lualine
   Plug 'nvim-lualine/lualine.nvim'
@@ -91,7 +94,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:ale_fixers = {}
 
 " colorscheme & syntax
-colorscheme onedark
+colorscheme gruvbox-material
 let python_highlight_all=1
 
 " Vista config
