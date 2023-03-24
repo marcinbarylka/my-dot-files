@@ -19,7 +19,10 @@ set showmatch                   " display matching bracket or parenthesis
 set hlsearch incsearch          " highlight all pervious search pattern with incsearch
 set termguicolors
 
-highlight ColorColumn ctermbg=9 "display ugly bright red bar at color column number
+highlight ColorColumn ctermbg=9
+
+" Python binding
+let g:python3_host_prog = $HOME . '/.pyenv/versions/nvim/bin/python'
 
 " Keybind Ctrl+l to clear search
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
@@ -27,12 +30,15 @@ nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
 "vim-plug configuration, plugins will be installed in ~/.config/nvim/plugged
 call plug#begin()
 
-  Plug 'kyazdani42/nvim-web-devicons' " for file icons
+  Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'romgrk/barbar.nvim'
 
+  " Python
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
   Plug 'vim-python/python-syntax'
+  Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
 
   " colors
   Plug 'morhetz/gruvbox'
@@ -45,7 +51,6 @@ call plug#begin()
 
   " lualine
   Plug 'nvim-lualine/lualine.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'
 
   " git
   Plug 'tpope/vim-fugitive'
