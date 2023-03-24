@@ -22,7 +22,7 @@ set termguicolors
 highlight ColorColumn ctermbg=9
 
 " Python binding
-let g:python3_host_prog = $HOME . '/.pyenv/versions/nvim/bin/python'
+let g:python3_host_prog = '/home/kaczor/.pyenv/versions/nvim/bin/python'
 
 " Keybind Ctrl+l to clear search
 nnoremap <C-l> :nohl<CR><C-l>:echo "Search Cleared"<CR>
