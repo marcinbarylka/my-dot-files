@@ -38,7 +38,11 @@ call plug#begin()
   Plug 'neovim/nvim-lspconfig'
   Plug 'nvim-lua/completion-nvim'
   Plug 'vim-python/python-syntax'
-  Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+  " Plug 'averms/black-nvim', {'do': ':UpdateRemotePlugins'}
+
+  " Mason
+  Plug 'williamboman/mason.nvim', { 'do': ':MasonUpdate' }
+
 
   " colors
   Plug 'morhetz/gruvbox'
@@ -48,6 +52,7 @@ call plug#begin()
   Plug 'sainnhe/edge'
   Plug 'sainnhe/gruvbox-material'
   Plug 'sainnhe/everforest'
+  Plug 'luisiacc/the-matrix.nvim'
 
   " lualine
   Plug 'nvim-lualine/lualine.nvim'
@@ -62,7 +67,6 @@ call plug#begin()
 
   " Github Copilot
   Plug 'github/copilot.vim'
-
 
 call plug#end()
 
@@ -82,12 +86,12 @@ let mapleader=" "
 nnoremap <M-Left> :bprevious<CR>
 nnoremap <M-Right> :bnext<CR>
 
-" remapping Ctrl+PgUp and Ctrl+PgDn to navigate through tabs        
+" remapping Ctrl+PgUp and Ctrl+PgDn to navigate through tabs
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
 " remapping Ctrl+Shift+PgUp and Ctrl+Shift+PgDn to move tabs
-nnoremap <C-S-Left> :tabmove -1<CR>   
+nnoremap <C-S-Left> :tabmove -1<CR>
 nnoremap <C-S-Right> :tabmove +1<CR>
 
 " nerdtree
@@ -116,4 +120,3 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
-
