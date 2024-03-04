@@ -596,7 +596,29 @@ require('lazy').setup {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for tsserver)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            if server_name == 'pylsp' then
+              require('lspconfig')[server_name].setup {
+                settings = {
+                  pylsp = {
+                    plugins = {
+                      black = { enabled = true },
+                      autoppep8 = { enabled = false },
+                      isort = { enabled = true },
+
+                      pycodestyle = { enabled = false },
+                      pyflakes = { enabled = false },
+                      pylint = { enabled = true, executable = 'pylint' },
+                      yapf = { enabled = false },
+                      flake8 = { enabled = false },
+                      mypy = { enabled = false },
+                    },
+                  },
+                },
+                capabilities = server.capabilities,
+              }
+            else
+              require('lspconfig')[server_name].setup(server)
+            end
           end,
         },
       }
