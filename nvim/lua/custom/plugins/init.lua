@@ -5,11 +5,13 @@
 return {
 
   -- color themes
-  { 'morhetz/gruvbox' },
+  { 'ellisonleao/gruvbox.nvim' },
   { 'sainnhe/sonokai' },
   { 'sainnhe/everforest' },
   { 'sainnhe/gruvbox-material' },
   { 'folke/lsp-colors.nvim' },
+  { 'navarasu/onedark.nvim' },
+  { 'rebelot/kanagawa.nvim' },
 
   -- nvim-tree
   { 'nvim-tree/nvim-web-devicons' },
@@ -42,4 +44,7 @@ return {
     opts = {},
     version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
+
+  -- aerial (outline)
+  { 'stevearc/aerial.nvim' },
 }
