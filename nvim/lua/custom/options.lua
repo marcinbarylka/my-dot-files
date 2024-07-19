@@ -10,7 +10,7 @@ require('gruvbox').setup {
 }
 
 vim.g.python3_host_prog = 'home/kaczor/.pyenv/versions/nvim/bin/python'
-vim.cmd.colorscheme 'tokyonight'
+vim.cmd.colorscheme 'kanagawa'
 vim.wo.colorcolumn = '120' -- highlight the 120th column
 
 vim.o.showtabline = 2

@@ -12,6 +12,7 @@ return {
   { 'folke/lsp-colors.nvim' },
   { 'navarasu/onedark.nvim' },
   { 'rebelot/kanagawa.nvim' },
+  { 'Mofiqul/dracula.nvim' },
 
   -- nvim-tree
   { 'nvim-tree/nvim-web-devicons' },
@@ -47,4 +48,7 @@ return {
 
   -- aerial (outline)
   { 'stevearc/aerial.nvim' },
+
+  -- fugitive
+  { 'tpope/vim-fugitive' },
 }
